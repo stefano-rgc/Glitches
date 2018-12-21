@@ -1,0 +1,111 @@
+include ''
+
+!# Structure
+
+   dr_div_cs ! cell sound crossing time (sec)
+   acoustic_radius ! sound time from center to outer cell boundary (sec)
+   acoustic_depth ! sound time from surface to outer cell boundary (sec)
+
+!# Thermodynamics
+
+   prad ! radiation pressure at center of zone
+   pgas ! gas pressure at center of zone (electrons and ions)
+
+   eta ! electron degeneracy parameter (eta >> 1 for significant degeneracy)
+   mu ! mean molecular weight per gas particle (ions + free electrons)
+
+   grada ! dlnT_dlnP at constant S
+   cv ! specific heat at constant volume
+   cp ! specific heat at constant total pressure
+
+   gamma1 ! dlnP_dlnRho at constant S
+   gamma3 ! gamma3 - 1 = dlnT_dlnRho at constant S
+   gam ! plasma interaction parameter (> 160 or so means starting crystallization)
+
+   csound ! sound speed
+   csound_face ! sound speed (was previously called csound_at_face)
+
+
+!# Nuclear energy generation
+   net_nuclear_energy ! erg/gm/s from nuclear reactions minus all neutrino losses
+   eps_nuc ! ergs/g/sec from nuclear reactions (reaction neutrinos subtracted)
+
+   pp
+   cno
+   tri_alfa
+
+!# Composition
+
+   !add_abundances ! this adds all of the isos that are in the current net
+   h1
+   he3
+   he4
+   
+   ! average charge from ionization module
+   avg_charge_H
+   avg_charge_He
+
+   ! average neutral fraction from ionization module
+   neutral_fraction_H
+   neutral_fraction_He
+
+   ! typical charge for given species
+   typical_charge h1
+   typical_charge h2
+   typical_charge he3
+   typical_charge he4
+
+   ! ionization state for given species
+   ionization h1
+   ionization he3
+   ionization he4
+   ionization c12
+   ionization fe52
+
+!# Opacity
+   opacity ! opacity measured at center of zone
+
+!# Convection
+
+   mlt_mixing_length ! mixing length for mlt (cm)
+   mlt_mixing_type ! value returned by mlt
+
+   gradT ! mlt value for required temperature gradient dlnT/dlnP
+
+   actual_gradT ! actual temperature gradient dlnT/dlnP in model
+   gradT_sub_actual_gradT
+
+   gradr ! dlnT/dlnP required for purely radiative transport
+
+   sch_stable ! 1 if grada > gradr, 0 otherwise
+   ledoux_stable ! 1 if gradL > gradr, 0 otherwise
+
+   !difference between the adiabatic gradient and the temperature gradient in the star
+   grada_sub_gradT
+
+   gradr_sub_gradT
+
+   conv_vel_div_csound
+
+
+
+!# Oscillations
+
+  brunt_N2 ! brunt-vaisala frequency squared
+
+  !Brunt frequency, scaled to a dimensionless number
+  brunt_N2_dimensionless ! N2 in units of 3GM/R^3
+
+  brunt_frequency ! cycles per day
+
+  sign_brunt_N2 ! sign of brunt_N2 (+1 for Ledoux stable; -1 for Ledoux unstable)
+  lamb_S2 ! for l=1: S = 2*(csound/r)^2
+  lamb_S ! for l=1: S = sqrt(2)*csound/r
+
+  lamb_Sl1 ! for l=1; = sqrt(2)*csound/r   (microHz)
+  lamb_Sl2 ! for l=2; = sqrt(6)*csound/r   (microHz)
+  lamb_Sl3 ! for l=3; = sqrt(12)*csound/r   (microHz)
+
+  brunt_nu ! brunt_frequency in microHz
+
+

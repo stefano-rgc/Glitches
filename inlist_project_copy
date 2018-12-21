@@ -1,0 +1,72 @@
+&star_job
+
+  ! begin with a pre-main sequence model
+  !  create_pre_main_sequence_model = .true.
+
+  ! save a model at the end of the run
+    save_model_when_terminate = .true. 
+    save_model_filename = '1.0Msun.mod'
+
+  ! display on-screen plots
+    pgstar_flag = .True. 
+
+  ! add more columns to the output file profiledd.data
+   profile_columns_file = 'extra_profile_columns'
+  ! add more columns to the output file history.data
+   history_columns_file = 'extra_history_columns'
+
+  ! abundances
+   change_Y=.true.
+   new_Y=0.28
+   change_Z=.true.
+   new_Z=0.02
+
+/ !end of star_job namelist
+
+
+&controls
+
+  ! starting specifications
+    initial_mass = 1.0 ! in Msun units
+
+  ! Stopping condition: Radius
+  !  photosphere_r_upper_limit = 30 ! or your choice
+
+  ! Stopping condition: Temperature
+  !  Teff_lower_limit = 4100 
+
+  ! Stopping condition: Max age
+  !  max_age = 4.6d9!10d9!12.325d9
+
+  ! Stopping condition: When the element abundance drops below the limit
+    xa_central_lower_limit_species(1) = 'h1'
+    xa_central_lower_limit(1) = 1d-5
+
+  ! Atmosphere
+    which_atm_option='Eddington_grey'
+    add_atmosphere_to_pulse_data=.true.
+
+  ! mesh adjustment
+    max_allowed_nz = 50000!8000
+    mesh_delta_coeff = 0.05d0 !1.0d0
+    max_dq = 1d-3!1d-2
+    mesh_min_dlnR = 1d-10!1d-9
+
+  ! Pulse data?
+    write_pulse_data_with_profile = .true.
+    format_for_FGONG_data = '(1P5E16.9,x)'
+
+  ! Sample rate
+    profile_interval = 3
+    max_num_profile_models = -1
+    history_interval = 1
+    max_years_for_timestep = 1d8
+
+  ! Burning regions
+    burn_min1 = 10
+    burn_min2 = 50
+
+  ! Mixing length parameter
+    mixing_length_alpha = 1.7137395 
+
+/ ! end of controls namelist
